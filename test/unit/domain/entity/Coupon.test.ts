@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import Coupon from "../../src/domain/Coupon";
+import Coupon from "../../../../src/domain/entity/Coupon";
 
 describe('Coupon', ()=>{
     test('Devec criar um cupom de desconto valido',() =>{

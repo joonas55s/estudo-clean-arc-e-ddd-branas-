@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import Cpf from "../../src/domain/Cpf";
+import Cpf from "../../../../src/domain/entity/Cpf";
 
 
 describe("Cpf", () => {

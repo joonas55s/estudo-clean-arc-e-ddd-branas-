@@ -1,7 +1,9 @@
 import { describe, expect, test } from "vitest";
-import Coupon from "../../src/domain/Coupon";
-import Item from "../../src/domain/Item";
-import Order from "../../src/domain/Order";
+import Coupon from "../../../../src/domain/entity/Coupon";
+import FixedFreigthCalculator from "../../../../src/domain/entity/FixedFreigthCalculator";
+import Item from "../../../../src/domain/entity/Item";
+import Order from "../../../../src/domain/entity/Order";
+
 
 describe("Account", () => {
     test("Deve criar um pedido com CPF válido", () => {
@@ -46,5 +48,25 @@ describe("Account", () => {
         order.addCoupon(new Coupon("VALE20",20, new Date('2021-12-01')))
         const total = order.getTotal()
         expect(total).toBe(160)
+    })
+
+    test("Deve criar um pedido com 3 items com um calculo de frete com estrategia default", () => {
+        const cpf = "839.435.452-10"
+        const order = new Order(cpf)
+        order.addItem(new Item(4, "Instrumentos musicais", "violão", 1000,100,30,10,3), 1)
+        order.addItem(new Item(5, "Instrumentos musicais", "amplificador", 5000,100,50,50,20), 1)
+        order.addItem(new Item(6 , "Instrumentos musicais", "cabo", 30,10,10,10,0.9), 3)
+        const freight = order.getFreight()
+        expect(freight).toBe(260)
+    })
+
+    test("Deve criar um pedido com 3 items com um calculo de frete com estrategia default fixa", () => {
+        const cpf = "839.435.452-10"
+        const order = new Order(cpf,new Date(), new FixedFreigthCalculator())
+        order.addItem(new Item(4, "Instrumentos musicais", "violão", 1000,100,30,10,3), 1)
+        order.addItem(new Item(5, "Instrumentos musicais", "amplificador", 5000,100,50,50,20), 1)
+        order.addItem(new Item(6 , "Instrumentos musicais", "cabo", 30,10,10,10,0.9), 3)
+        const freight = order.getFreight()
+        expect(freight).toBe(50)
     })
 })

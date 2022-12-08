@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import Account from "../../src/domain/Account";
+import Account from "../../../../src/domain/entity/Account";
+
 
 
 let account:Account

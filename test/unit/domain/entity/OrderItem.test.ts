@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import OrderItem from "../../src/domain/OrderItem";
+import OrderItem from "../../../../src/domain/entity/OrderItem";
+
 
 
 describe("OrderItem", () => {
